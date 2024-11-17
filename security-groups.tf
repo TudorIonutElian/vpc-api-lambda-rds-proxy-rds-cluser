@@ -4,7 +4,7 @@
     - Will allow outbound traffic on port 443 to the RDS Proxy
 */
 resource "aws_security_group" "lambda_security_group" {
-  name = "lambda_security_group"
+  name   = "lambda_security_group"
   vpc_id = aws_vpc.private_vpc_course_demo.id
 
   tags = {
@@ -21,7 +21,7 @@ resource "aws_security_group" "lambda_security_group" {
 */
 
 resource "aws_security_group" "rds_proxy_security_group" {
-  name = "rds_proxy_security_group"
+  name   = "rds_proxy_security_group"
   vpc_id = aws_vpc.private_vpc_course_demo.id
 
   tags = {
@@ -37,7 +37,7 @@ resource "aws_security_group" "rds_proxy_security_group" {
 */
 
 resource "aws_security_group" "rds_cluster_security_group" {
-  name = "rds_cluster_security_group"
+  name   = "rds_cluster_security_group"
   vpc_id = aws_vpc.private_vpc_course_demo.id
 
   tags = {
