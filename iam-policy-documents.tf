@@ -31,3 +31,35 @@ data "aws_iam_policy_document" "lambda_network_interface" {
     resources = ["*"]
   }
 }
+
+data "aws_iam_policy_document" "RDSProxyRDSTrustPolicy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    effect  = "Allow"
+    principals {
+      type        = "Service"
+      identifiers = ["rds.amazonaws.com"]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "rds_proxy_policy" {
+  statement {
+    actions = [
+      "secretsmanager:GetSecretValue",
+      "secretsmanager:DescribeSecret"
+    ]
+    effect = "Allow"
+    resources = [aws_secretsmanager_secret.rds_proxy_secret.arn]
+  }
+
+  statement {
+    actions = [
+      "rds-db:connect"
+    ]
+    effect = "Allow"
+    resources = [
+      "arn:aws:rds-db:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_caller.account_id}:dbuser:${aws_db_instance.mysql_cluster.resource_id}/master"
+    ]
+  }
+}
