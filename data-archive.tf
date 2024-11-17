@@ -9,6 +9,6 @@
 
 data "archive_file" "lambda_database_proxy_archive" {
   type        = "zip"
-  source_dir = "${path.module}/lambda-database-proxy/"
+  source_dir  = "${path.module}/lambda-database-proxy/"
   output_path = "${path.module}/lambda_database_proxy.zip"
 }
