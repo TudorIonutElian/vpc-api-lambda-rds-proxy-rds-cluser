@@ -12,7 +12,9 @@ jobs:
     env: 
       build_number: ${{ github.run_number }}
       REPO_NAME: ${{ github.repository }}
-      USERNAME: ${{ github.actor }}
+      USERNAME: ${{ github.actor }}        
+      TF_VAR_rds_cluster_username: ${{ secrets.TF_VAR_rds_cluster_username }}
+      TF_VAR_rds_cluster_password: ${{ secrets.TF_VAR_rds_cluster_password }}
     steps:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v1
