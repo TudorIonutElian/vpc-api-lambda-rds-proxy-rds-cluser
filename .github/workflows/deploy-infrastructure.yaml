@@ -1,0 +1,38 @@
+name: Deploy resources
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Deploy resources
+    runs-on: ubuntu-latest
+    permissions: write-all
+    env: 
+      build_number: ${{ github.run_number }}
+      REPO_NAME: ${{ github.repository }}
+      USERNAME: ${{ github.actor }}
+    steps:
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.9.8
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install awscli --upgrade --user
+          echo "export PATH=$PATH:/root/.local/bin" >> $GITHUB_ENV
+      - name: Configure AWS credentials
+        run: aws configure set |
+            aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && | 
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && |
+            aws configure set region ${{ secrets.AWS_REGION }}
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Plan
+        run: terraform plan
