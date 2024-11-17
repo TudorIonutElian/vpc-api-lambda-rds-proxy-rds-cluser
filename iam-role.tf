@@ -21,7 +21,7 @@ resource "aws_iam_role" "lambda_database_proxy_role" {
     - name: The name of the IAM role.
 */
 
-resource "aws_iam_role" "rds-proxy-role" {
+resource "aws_iam_role" "rds_proxy_role" {
   name = "rds-proxy-role"
   assume_role_policy = data.aws_iam_policy_document.RDSProxyRDSTrustPolicy.json
 }

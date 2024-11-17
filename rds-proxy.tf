@@ -4,7 +4,7 @@ resource "aws_db_proxy" "mysql_cluster_proxy" {
   engine_family          = "MYSQL"
   idle_client_timeout    = 1800
   require_tls            = true
-  role_arn               = aws_iam_role.example.arn
+  role_arn               = aws_iam_role.rds_proxy_role.arn
   vpc_security_group_ids = [aws_security_group.rds_proxy_security_group.id]
   vpc_subnet_ids = [
     aws_subnet.private_vpc_course_demo_eu_central_1a.id,
