@@ -1,9 +1,9 @@
-variable "mysql_cluster_username" {
+variable "rds_cluster_username" {
   type        = string
   description = "mysql cluster username"
 }
 
-variable "mysql_cluster_password" {
+variable "rds_cluster_username" {
   type        = string
   description = "mysql cluster password"
 }
