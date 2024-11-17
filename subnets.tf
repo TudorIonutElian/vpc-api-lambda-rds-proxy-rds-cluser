@@ -4,7 +4,7 @@ resource "aws_subnet" "private_vpc_course_demo_eu_central_1a" {
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = false
 
-    tags = {
+  tags = {
     Name    = "Private VPC Course Demo EU Central 1a"
     Project = "AWS Terraform Course"
   }
@@ -16,7 +16,7 @@ resource "aws_subnet" "private_vpc_course_demo_eu_central_1b" {
   availability_zone       = "eu-central-1b"
   map_public_ip_on_launch = false
 
-    tags = {
+  tags = {
     Name    = "Private VPC Course Demo EU Central 1b"
     Project = "AWS Terraform Course"
   }
