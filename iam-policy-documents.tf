@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "rds_proxy_policy" {
     ]
     effect = "Allow"
     resources = [
-      "arn:aws:rds-db:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_caller.account_id}:dbuser:${aws_rds_cluster.mysql_cluster.resource_id}/master"
+      "arn:aws:rds-db:${data.aws_region.current_region.name}:${data.aws_caller_identity.current_caller.account_id}:dbuser:${aws_rds_cluster.mysql_cluster.id}/master"
     ]
   }
 }

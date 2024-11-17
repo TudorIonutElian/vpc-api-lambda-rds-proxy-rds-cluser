@@ -10,8 +10,8 @@ resource "aws_iam_role" "lambda_database_proxy_role" {
   assume_role_policy = data.aws_iam_policy_document.LambdaAWSLambdaTrustPolicy.json
 
   tags = {
-    Name    = "lambda_database_proxy_role"
-    Project = "lambda-database-proxy"
+    Name    = "Lambda Database Proxy Role"
+    Project = "AWS Terraform Course"
   }
 }
 
@@ -24,4 +24,9 @@ resource "aws_iam_role" "lambda_database_proxy_role" {
 resource "aws_iam_role" "rds_proxy_role" {
   name = "rds-proxy-role"
   assume_role_policy = data.aws_iam_policy_document.RDSProxyRDSTrustPolicy.json
+
+  tags = {
+    Name    = "RDS Proxy Role"
+    Project = "AWS Terraform Course"
+  }
 }

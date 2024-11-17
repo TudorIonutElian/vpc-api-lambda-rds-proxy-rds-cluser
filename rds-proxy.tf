@@ -18,8 +18,8 @@ resource "aws_db_proxy" "mysql_cluster_proxy" {
     secret_arn  = aws_secretsmanager_secret.rds_proxy_secret.arn
   }
 
-  tags = {
-    Name = "example"
-    Key  = "value"
+    tags = {
+    Name    = "RDS Proxy"
+    Project = "AWS Terraform Course"
   }
 }
