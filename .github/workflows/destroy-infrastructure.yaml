@@ -33,5 +33,5 @@ jobs:
           aws configure set region ${{ secrets.AWS_REGION }}
       - name: Terraform Init
         run: terraform init
-      - name: Terraform Plan
+      - name: Terraform Destroy
         run: terraform destroy -auto-approve
