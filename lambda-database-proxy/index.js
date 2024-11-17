@@ -12,22 +12,22 @@ exports.handler = async(event) => {
       
       	//
     	var signer = new AWS.RDS.Signer({
-	        region: '[insert your region here]', // example: us-east-2
-	        hostname: '[insert your RDS Proxy endpoint here]',
+	        region: process.env['region'],
+	        hostname: process.env['endpoint'],
 	        port: 3306,
-	        username: '[Your RDS User name]'
+	        username: process.env['username']
   		});
         
 	    let token = signer.getAuthToken({
-	      username: '[Your RDS User name]'
+	      username: process.env['username']
 	    });
     
     	console.log ("IAM Token obtained\n");
     
         let connectionConfig = {
-          host: process.env['endpoint'], // Store your endpoint as an env var
-          user: '[Your RDS User name]',
-          database: process.env['my_db'], // Store your DB schema name as an env var
+          host: process.env['endpoint'],
+          user: process.env['username'],
+          database: process.env['vpc_api_db'],
           ssl: { rejectUnauthorized: false},
           password: token,
           authSwitchHandler: function ({pluginName, pluginData}, cb) {
