@@ -3,8 +3,8 @@ resource "aws_rds_cluster" "mysql_cluster" {
   engine                              = "aurora-mysql"
   engine_version                      = "8.0.mysql_aurora.3.04.3"
   database_name                       = "mydb"
-  master_username                     = variable.rds_cluster_username
-  master_password                     = variable.rds_cluster_password
+  master_username                     = var.rds_cluster_username
+  master_password                     = var.rds_cluster_password
   backup_retention_period             = 5
   preferred_backup_window             = "07:00-09:00"
   skip_final_snapshot                 = true
